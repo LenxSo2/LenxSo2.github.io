@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standoff 2 Mods | LenxSo2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0f0f0f;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+        }
+        
+        .logo {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #1e1e1e, #ffffff, #1e1e1e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #888888;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        .telegram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            color: #666666;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        
+        .telegram-link:hover {
+            color: #ffffff;
+        }
+        
+        .telegram-link i {
+            font-size: 1.2rem;
+        }
+        
+        .mods-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .mod-card {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #252525;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mod-card:hover {
+            transform: translateY(-4px);
+            border-color: #333333;
+            background: #1f1f1f;
+        }
+        
+        .mod-icon {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+        }
+        
+        .mod-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: -0.3px;
+        }
+        
+        .mod-description {
+            color: #aaaaaa;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-size: 0.98rem;
+            text-align: center;
+            font-weight: 400;
+        }
+        
+        .password-info {
+            background: #252525;
+            color: #cccccc;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 24px;
+            font-weight: 500;
+            font-size: 1.05rem;
+            border: 1px solid #333333;
+        }
+        
+        .password-info strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .download-btn {
+            width: 100%;
+            padding: 16px 24px;
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            letter-spacing: -0.2px;
+        }
+        
+        .download-btn:hover {
+            background: #252525;
+            border-color: #444444;
+            transform: translateY(-2px);
+        }
+        
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        
+        .warning {
+            background: #1a1a1a;
+            border: 1px solid #252525;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 35px 0;
+            text-align: center;
+        }
+        
+        .warning h3 {
+            color: #ff4444;
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .warning p {
+            color: #bbbbbb;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 25px 0;
+            color: #666666;
+            font-size: 0.9rem;
+            border-top: 1px solid #252525;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.4rem;
+            }
+            
+            .mod-title {
+                font-size: 1.4rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .mod-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">STANDOFF 2 MODS</h1>
+            <p class="subtitle">Эксклюзивные модификации от LenxSo2 с расширенными возможностями и функциями.</p>
+            <a href="https://t.me/lenxso2" class="telegram-link" target="_blank">
+                <i class="fab fa-telegram"></i> Официальный Telegram канал
+            </a>
+        </header>
+        
+        <div class="warning">
+            <h3>⚠️ ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ</h3>
+            <p>Использование модификаций может привести к блокировке аккаунта. Используйте на свой страх и риск.</p>
+        </div>
+        
+        <div class="password-info">
+            🔑 Пароль от всех архивов: <strong>2025</strong>
+        </div>
+        
+        <div class="mods-grid">
+            <!-- Impulse Mod -->
+            <div class="mod-card">
+                <div class="mod-icon">⚡</div>
+                <h3 class="mod-title">⚡ Impulse ⚡</h3>
+                <p class="mod-description">Продвинутая модификация с улучшенными функциями прицеливания, автоматической разметкой врагов и оптимизированным интерфейсом для максимальной эффективности в бою.</p>
+                <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Impulse.zip" class="download-btn" download>СКАЧАТЬ IMPULSE</a>
+            </div>
+            
+            <!-- Nerest Mod -->
+            <div class="mod-card">
+                <div class="mod-icon">🛡️</div>
+                <h3 class="mod-title">🛡️ Nerest 🛡️</h3>
+                <p class="mod-description">Защитная модификация с улучшенной системой обнаружения читеров, дополнительной броней и уникальными тактическими возможностями для командной игры.</p>
+                <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Nerest.zip" class="download-btn" download>СКАЧАТЬ NEREST</a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2024 LenxSo2 • Standoff 2 Modifications</p>
+            <p>Пароль от архивов: 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
