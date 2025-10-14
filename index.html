@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Standoff 2 и Minecraft моды | LenxSo2</title>
     <meta name="description" content="Скачать моды для Standoff 2 и Minecraft. Взломанные версии, читы, патчи, Onion. Пароль для архивов: 2025">
-    <meta name="keywords" content="standoff 2 читы, standoff 2 моды, minecraft читы, minecraft моды, взлом standoff 2, читы на standoff 2, скачать моды, onion minecraft, lenxso2">
+    <meta name="keywords" content="standoff 2 читы, standoff 2 моды, minecraft читы, minecraft моды, взлом standoff 2, читы на standoff 2, скачать моды, onion minecraft, lenxso2, моды для игры, взломанные игры, читы для standoff 2, читы для minecraft, патчи, взлом, игры, скачать бесплатно, модификации, игры онлайн, читы, взлом игры, моды, скачать читы, читы бесплатно, игры читы, моды взлом, читы онлайн, скачать моды бесплатно, взломанные моды, читы на игры, моды для standoff 2, моды для minecraft, читы на standoff 2, читы на minecraft, скачать игры, игры взломанные, моды игры, читы игры, взломанные игры бесплатно, читы для игр, моды скачать, игры читы скачать, взлом игры читы, моды взлом игры, читы и моды, игры с читами, моды читы">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
@@ -16,40 +16,69 @@
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0f0f0f;
+            background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
             color: #ffffff;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            animation: floatFast 1.5s infinite ease-in-out;
+        }
+        
+        @keyframes floatFast {
+            0%, 100% { transform: translate(0, 0); opacity: 1; }
+            25% { transform: translate(15px, 10px); opacity: 0.7; }
+            50% { transform: translate(30px, 0); opacity: 0.4; }
+            75% { transform: translate(15px, -10px); opacity: 0.7; }
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
         
         header {
             text-align: center;
             margin-bottom: 50px;
             padding: 40px 0;
+            position: relative;
         }
         
         .logo {
-            font-size: 3.2rem;
+            font-size: 4rem;
             font-weight: 800;
             margin-bottom: 12px;
-            background: linear-gradient(90deg, #1e1e1e, #ffffff, #1e1e1e);
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: -0.5px;
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
         }
         
         .subtitle {
-            font-size: 1.1rem;
-            color: #888888;
+            font-size: 1.2rem;
+            color: #a0a0a0;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 20px;
             line-height: 1.6;
             font-weight: 400;
         }
@@ -61,12 +90,18 @@
             margin-top: 20px;
             color: #666666;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: color 0.2s;
+            background: rgba(58, 138, 204, 0.1);
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(58, 138, 204, 0.3);
         }
         
         .telegram-link:hover {
-            color: #ffffff;
+            color: #4a9ff5;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(58, 138, 204, 0.3);
         }
         
         .telegram-link i {
@@ -76,107 +111,200 @@
         .game-selector {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin: 40px 0;
+            gap: 60px;
+            margin: 80px 0;
+            flex-wrap: wrap;
         }
         
         .game-option {
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s ease;
+            position: relative;
+            min-width: 300px;
+            padding: 30px;
+            border-radius: 25px;
+            background: rgba(26, 26, 46, 0.7);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .game-option::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid transparent;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        
+        .game-option:hover::before {
+            border: 2px solid #667eea;
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.8);
+            animation: glow 1.5s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            to { box-shadow: 0 0 50px rgba(102, 126, 234, 0.9); }
         }
         
         .game-option:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(30, 30, 58, 0.9);
+            border-color: rgba(102, 126, 234, 0.6);
         }
         
-        .game-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 2px solid #333333;
+        .game-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            display: block;
+            text-align: center;
+            color: #667eea;
+            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+        }
+        
+        .game-title {
+            font-size: 2.2rem;
+            font-weight: 800;
             margin-bottom: 15px;
-            transition: all 0.3s ease;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: -0.5px;
         }
         
-        .game-option:hover .game-image {
-            border-color: #444444;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        .game-description {
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            text-align: center;
+            font-weight: 400;
         }
         
         .game-btn {
-            padding: 12px 24px;
-            background: #1a1a1a;
+            padding: 22px 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #ffffff;
-            border: 1px solid #333333;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border: none;
+            border-radius: 22px;
+            font-size: 1.5rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+            letter-spacing: -0.5px;
+            width: 100%;
+            max-width: 250px;
         }
         
         .game-btn:hover {
-            background: #252525;
-            border-color: #444444;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.8);
+        }
+        
+        .game-btn:active {
+            transform: translateY(0);
+        }
+        
+        .standoff2-btn {
+            background: linear-gradient(135deg, #4a90e2 0%, #5e60ce 100%);
+        }
+        
+        .minecraft-btn {
+            background: linear-gradient(135deg, #57bd76 0%, #4a69bd 100%);
+        }
+        
+        .standoff2-btn:hover, .minecraft-btn:hover {
+            box-shadow: 0 15px 35px rgba(74, 144, 226, 0.7);
+        }
+        
+        .standoff2-btn:hover {
+            box-shadow: 0 15px 35px rgba(74, 144, 226, 0.7);
+        }
+        
+        .minecraft-btn:hover {
+            box-shadow: 0 15px 35px rgba(87, 189, 118, 0.7);
         }
         
         .back-btn {
             display: inline-block;
             margin: 20px auto 40px;
-            padding: 12px 24px;
-            background: #1a1a1a;
+            padding: 18px 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #ffffff;
-            border: 1px solid #333333;
-            border-radius: 12px;
-            font-size: 1rem;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.3rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
             text-align: center;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
         }
         
         .back-btn:hover {
-            background: #252525;
-            border-color: #444444;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.7);
         }
         
         .mods-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-top: 20px;
         }
         
         .mod-card {
-            background: #1a1a1a;
-            border-radius: 16px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
             padding: 32px;
-            border: 1px solid #252525;
+            border: 1px solid rgba(102, 126, 234, 0.3);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .mod-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         }
         
         .mod-card:hover {
-            transform: translateY(-4px);
-            border-color: #333333;
-            background: #1f1f1f;
+            transform: translateY(-8px);
+            border-color: rgba(102, 126, 234, 0.6);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
         
         .mod-icon {
-            font-size: 2.2rem;
+            font-size: 3rem;
             margin-bottom: 20px;
             display: block;
             text-align: center;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
         .mod-title {
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 16px;
             color: #ffffff;
@@ -185,52 +313,52 @@
         }
         
         .mod-description {
-            color: #aaaaaa;
-            line-height: 1.6;
+            color: #b0b0b0;
+            line-height: 1.7;
             margin-bottom: 24px;
-            font-size: 0.98rem;
+            font-size: 1rem;
             text-align: center;
             font-weight: 400;
         }
         
         .password-info {
-            background: #252525;
-            color: #cccccc;
-            padding: 14px 20px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 18px 24px;
+            border-radius: 16px;
             text-align: center;
             margin-bottom: 24px;
-            font-weight: 500;
-            font-size: 1.05rem;
-            border: 1px solid #333333;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .password-info strong {
             color: #ffffff;
-            font-weight: 600;
+            font-weight: 800;
         }
         
         .download-btn {
             width: 100%;
-            padding: 16px 24px;
-            background: #1a1a1a;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #ffffff;
-            border: 1px solid #333333;
-            border-radius: 12px;
-            font-size: 1.15rem;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
             text-align: center;
             letter-spacing: -0.2px;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
         }
         
         .download-btn:hover {
-            background: #252525;
-            border-color: #444444;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.7);
         }
         
         .download-btn:active {
@@ -238,47 +366,52 @@
         }
         
         .warning {
-            background: #1a1a1a;
-            border: 1px solid #252525;
-            border-radius: 12px;
-            padding: 24px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 16px;
+            padding: 28px;
             margin: 35px 0;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
         }
         
         .warning h3 {
-            color: #ff4444;
+            color: #ffffff;
             margin-bottom: 12px;
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: 700;
         }
         
         .warning p {
-            color: #bbbbbb;
+            color: #fff;
             line-height: 1.6;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
         
         footer {
             text-align: center;
-            margin-top: 60px;
-            padding: 25px 0;
+            margin-top: 80px;
+            padding: 35px 0;
             color: #666666;
-            font-size: 0.9rem;
-            border-top: 1px solid #252525;
+            font-size: 1rem;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
         }
         
         .hidden {
             display: none;
         }
         
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
         @media (max-width: 768px) {
             .logo {
-                font-size: 2.4rem;
+                font-size: 2.8rem;
             }
             
             .mod-title {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
             }
             
             .container {
@@ -292,17 +425,35 @@
             .game-selector {
                 flex-direction: column;
                 align-items: center;
-                gap: 30px;
+                gap: 40px;
             }
             
-            .game-image {
-                width: 120px;
-                height: 120px;
+            .game-option {
+                min-width: 280px;
+                padding: 25px;
+            }
+            
+            .game-icon {
+                font-size: 3.5rem;
+            }
+            
+            .game-title {
+                font-size: 1.8rem;
+            }
+            
+            .game-btn {
+                padding: 18px 35px;
+                font-size: 1.3rem;
+            }
+            
+            .mods-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <div class="particles-container" id="particles"></div>
     <div class="container">
         <header>
             <h1 class="logo">MODS HUB</h1>
@@ -314,12 +465,16 @@
         
         <div id="gameSelection" class="game-selector">
             <div class="game-option" onclick="selectGame('standoff2')">
-                <img src="img/standoff.jpg" alt="Standoff 2" class="game-image">
-                <button class="game-btn">Standoff 2</button>
+                <i class="fas fa-crosshairs game-icon"></i>
+                <h2 class="game-title">⚡ Standoff 2</h2>
+                <p class="game-description">Моды и читы для экшен-шутера Standoff 2</p>
+                <button class="game-btn standoff2-btn">ВЫБРАТЬ</button>
             </div>
             <div class="game-option" onclick="selectGame('minecraft')">
-                <img src="img/minecraft.jpg" alt="Minecraft" class="game-image">
-                <button class="game-btn">Minecraft</button>
+                <i class="fas fa-cube game-icon"></i>
+                <h2 class="game-title">🧄 Minecraft</h2>
+                <p class="game-description">Моды и улучшения для игры Minecraft</p>
+                <button class="game-btn minecraft-btn">ВЫБРАТЬ</button>
             </div>
         </div>
         
@@ -394,6 +549,42 @@
             document.getElementById('minecraftContent').classList.add('hidden');
             document.getElementById('gameSelection').classList.remove('hidden');
         }
+        
+        // Create animated particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 80;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 3 + 1;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 1.5;
+                const duration = 1 + Math.random() * 0.5;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Add floating animation to all mod icons when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            const icons = document.querySelectorAll('.mod-icon');
+            icons.forEach(icon => {
+                icon.style.animation = 'float 3s ease-in-out infinite';
+            });
+        });
     </script>
 </body>
 </html>
