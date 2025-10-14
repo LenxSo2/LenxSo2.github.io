@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Standoff 2 Mods | LenxSo2</title>
+    <title>Standoff 2 и Minecraft моды | LenxSo2</title>
+    <meta name="description" content="Скачать моды для Standoff 2 и Minecraft. Взломанные версии, читы, патчи, Onion. Пароль для архивов: 2025">
+    <meta name="keywords" content="standoff 2 читы, standoff 2 моды, minecraft читы, minecraft моды, взлом standoff 2, читы на standoff 2, скачать моды, onion minecraft, lenxso2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
@@ -69,6 +71,78 @@
         
         .telegram-link i {
             font-size: 1.2rem;
+        }
+        
+        .game-selector {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
+        
+        .game-option {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .game-option:hover {
+            transform: translateY(-10px);
+        }
+        
+        .game-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid #333333;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .game-option:hover .game-image {
+            border-color: #444444;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        
+        .game-btn {
+            padding: 12px 24px;
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .game-btn:hover {
+            background: #252525;
+            border-color: #444444;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin: 20px auto 40px;
+            padding: 12px 24px;
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .back-btn:hover {
+            background: #252525;
+            border-color: #444444;
         }
         
         .mods-grid {
@@ -194,6 +268,10 @@
             border-top: 1px solid #252525;
         }
         
+        .hidden {
+            display: none;
+        }
+        
         @media (max-width: 768px) {
             .logo {
                 font-size: 2.4rem;
@@ -210,50 +288,112 @@
             .mod-card {
                 padding: 24px;
             }
+            
+            .game-selector {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .game-image {
+                width: 120px;
+                height: 120px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 class="logo">STANDOFF 2 MODS</h1>
-            <p class="subtitle">Эксклюзивные модификации от LenxSo2 с расширенными возможностями и функциями.</p>
+            <h1 class="logo">MODS HUB</h1>
+            <p class="subtitle">Моды и патчи для Standoff 2 и Minecraft от LenxSo2</p>
             <a href="https://t.me/lenxso2" class="telegram-link" target="_blank">
                 <i class="fab fa-telegram"></i> Официальный Telegram канал
             </a>
         </header>
         
-        <div class="warning">
-            <h3>⚠️ ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ</h3>
-            <p>Использование модификаций может привести к блокировке аккаунта. Используйте на свой страх и риск.</p>
+        <div id="gameSelection" class="game-selector">
+            <div class="game-option" onclick="selectGame('standoff2')">
+                <img src="img/standoff.jpg" alt="Standoff 2" class="game-image">
+                <button class="game-btn">Standoff 2</button>
+            </div>
+            <div class="game-option" onclick="selectGame('minecraft')">
+                <img src="img/minecraft.jpg" alt="Minecraft" class="game-image">
+                <button class="game-btn">Minecraft</button>
+            </div>
         </div>
         
-        <div class="password-info">
-            🔑 Пароль от всех архивов: <strong>2025</strong>
-        </div>
-        
-        <div class="mods-grid">
-            <!-- Impulse Mod -->
-            <div class="mod-card">
-                <div class="mod-icon">⚡</div>
-                <h3 class="mod-title">⚡ Impulse ⚡</h3>
-                <p class="mod-description">Продвинутая модификация с улучшенными функциями прицеливания, автоматической разметкой врагов и оптимизированным интерфейсом для максимальной эффективности в бою.</p>
-                <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Impulse.zip" class="download-btn" download>СКАЧАТЬ IMPULSE</a>
+        <div id="standoff2Content" class="hidden">
+            <a href="#" class="back-btn" onclick="showGameSelection()">← Назад к выбору игры</a>
+            
+            <div class="warning">
+                <h3>⚠️ ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ</h3>
+                <p>Использование модификаций может привести к блокировке аккаунта. Используйте на свой страх и риск.</p>
             </div>
             
-            <!-- Nerest Mod -->
-            <div class="mod-card">
-                <div class="mod-icon">🛡️</div>
-                <h3 class="mod-title">🛡️ Nerest 🛡️</h3>
-                <p class="mod-description">Защитная модификация с улучшенной системой обнаружения читеров, дополнительной броней и уникальными тактическими возможностями для командной игры.</p>
-                <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Nerest.zip" class="download-btn" download>СКАЧАТЬ NEREST</a>
+            <div class="password-info">
+                🔑 Пароль от всех архивов: <strong>2025</strong>
+            </div>
+            
+            <div class="mods-grid">
+                <!-- Impulse Mod -->
+                <div class="mod-card">
+                    <div class="mod-icon">⚡</div>
+                    <h3 class="mod-title">⚡ Impulse ⚡</h3>
+                    <p class="mod-description">Продвинутая модификация с улучшенными функциями прицеливания, автоматической разметкой врагов и оптимизированным интерфейсом для максимальной эффективности в бою.</p>
+                    <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Impulse.zip" class="download-btn" download>СКАЧАТЬ IMPULSE</a>
+                </div>
+                
+                <!-- Nerest Mod -->
+                <div class="mod-card">
+                    <div class="mod-icon">🛡️</div>
+                    <h3 class="mod-title">🛡️ Nerest 🛡️</h3>
+                    <p class="mod-description">Защитная модификация с улучшенной системой обнаружения читеров, дополнительной броней и уникальными тактическими возможностями для командной игры.</p>
+                    <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Nerest.zip" class="download-btn" download>СКАЧАТЬ NEREST</a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="minecraftContent" class="hidden">
+            <a href="#" class="back-btn" onclick="showGameSelection()">← Назад к выбору игры</a>
+            
+            <div class="password-info">
+                🔑 Пароль от всех архивов: <strong>2025</strong>
+            </div>
+            
+            <div class="mods-grid">
+                <!-- Onion Mod -->
+                <div class="mod-card">
+                    <div class="mod-icon">🧄</div>
+                    <h3 class="mod-title">🧄 Onion 🧄</h3>
+                    <p class="mod-description">Улучшенная модификация для Minecraft с расширенными возможностями, улучшенным интерфейсом и уникальными функциями для максимального игрового опыта.</p>
+                    <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Onion.zip" class="download-btn" download>СКАЧАТЬ ONION</a>
+                </div>
             </div>
         </div>
         
         <footer>
-            <p>© 2024 LenxSo2 • Standoff 2 Modifications</p>
+            <p>© 2024 LenxSo2 • Моды для Standoff 2 и Minecraft</p>
             <p>Пароль от архивов: 2025</p>
         </footer>
     </div>
+    
+    <script>
+        function selectGame(game) {
+            document.getElementById('gameSelection').classList.add('hidden');
+            
+            if (game === 'standoff2') {
+                document.getElementById('standoff2Content').classList.remove('hidden');
+            } else if (game === 'minecraft') {
+                document.getElementById('minecraftContent').classList.remove('hidden');
+            }
+        }
+        
+        function showGameSelection() {
+            document.getElementById('standoff2Content').classList.add('hidden');
+            document.getElementById('minecraftContent').classList.add('hidden');
+            document.getElementById('gameSelection').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
