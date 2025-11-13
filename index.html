@@ -27,6 +27,7 @@
             padding: 20px;
             position: relative;
             overflow-x: hidden;
+            background-attachment: fixed;
         }
         
         .particles-container {
@@ -35,7 +36,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
+            z-index: -3;
         }
         
         .particle {
@@ -50,6 +51,37 @@
             25% { transform: translate(15px, 10px); opacity: 0.7; }
             50% { transform: translate(30px, 0); opacity: 0.4; }
             75% { transform: translate(15px, -10px); opacity: 0.7; }
+        }
+        
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(102, 126, 234, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(102, 126, 234, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+            opacity: 0.3;
+        }
+        
+        .glow-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+            animation: glowPulse 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glowPulse {
+            0% { opacity: 0.1; }
+            100% { opacity: 0.3; }
         }
         
         .container {
@@ -68,7 +100,7 @@
         }
         
         .logo {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
             margin-bottom: 12px;
             background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
@@ -77,15 +109,22 @@
             background-clip: text;
             letter-spacing: -0.5px;
             text-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+            50% { text-shadow: 0 0 30px rgba(102, 126, 234, 0.6), 0 0 40px rgba(102, 126, 234, 0.4); }
         }
         
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #a0a0a0;
             max-width: 600px;
             margin: 0 auto 20px;
             line-height: 1.6;
             font-weight: 400;
+            letter-spacing: 0.5px;
         }
         
         .telegram-link {
@@ -95,7 +134,7 @@
             margin-top: 20px;
             color: #ffffff;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             transition: all 0.3s ease;
             background: linear-gradient(135deg, #0088cc 0%, #0055aa 100%);
@@ -106,6 +145,12 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes buttonPulse {
+            0%, 100% { box-shadow: 0 8px 25px rgba(0, 136, 204, 0.4); }
+            50% { box-shadow: 0 12px 35px rgba(0, 136, 204, 0.6); }
         }
         
         .telegram-link::before {
@@ -151,67 +196,94 @@
         }
         
         .game-selector {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
             margin: 80px 0;
-            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
         }
         
         .game-option {
             text-align: center;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            min-width: 200px;
-            padding: 20px;
-            border-radius: 15px;
+            min-height: 220px;
+            padding: 25px;
+            border-radius: 20px;
             background: rgba(26, 26, 46, 0.7);
             border: 1px solid rgba(102, 126, 234, 0.3);
             backdrop-filter: blur(10px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
         }
         
         .game-option:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-8px) scale(1.03);
             background: rgba(30, 30, 58, 0.9);
             border-color: rgba(102, 126, 234, 0.6);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        
+        .game-option::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: height 0.4s ease;
+            z-index: -1;
+        }
+        
+        .game-option:hover::after {
+            height: 100%;
+            opacity: 0.1;
         }
         
         .game-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 15px;
             display: block;
             text-align: center;
             color: #667eea;
             filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.5));
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         
         .game-title {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 800;
             margin-bottom: 8px;
             color: #ffffff;
             text-align: center;
             letter-spacing: -0.3px;
+            text-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
         }
         
         .game-description {
             color: #b0b0b0;
             line-height: 1.5;
             margin-bottom: 15px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             text-align: center;
             font-weight: 400;
         }
         
         .game-btn {
-            padding: 12px 25px;
+            padding: 14px 28px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #ffffff;
             border: none;
-            border-radius: 12px;
-            font-size: 0.95rem;
+            border-radius: 15px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -220,7 +292,13 @@
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
             letter-spacing: -0.2px;
             width: 100%;
-            max-width: 160px;
+            max-width: 180px;
+            animation: buttonGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes buttonGlow {
+            0%, 100% { box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5); }
+            50% { box-shadow: 0 6px 18px rgba(102, 126, 234, 0.7); }
         }
         
         .game-btn:hover {
@@ -252,15 +330,88 @@
             box-shadow: 0 8px 20px rgba(255, 107, 107, 0.7);
         }
         
+        .lenxso2-loader {
+            grid-column: span 3;
+            min-height: 280px;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(255, 107, 107, 0.1));
+            border: 2px solid rgba(255, 107, 107, 0.6);
+            animation: loaderGlow 3s ease-in-out infinite alternate;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        @keyframes loaderGlow {
+            0% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.3); }
+            100% { box-shadow: 0 0 40px rgba(255, 107, 107, 0.6); }
+        }
+        
+        .lenxso2-loader::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 49%, rgba(255, 107, 107, 0.2) 50%, transparent 51%);
+            background-size: 20px 20px;
+            animation: scanLine 3s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes scanLine {
+            0% { transform: translateY(-10px); }
+            100% { transform: translateY(100%); }
+        }
+        
+        .lenxso2-loader .game-icon {
+            color: #ff6b6b;
+            filter: drop-shadow(0 0 15px rgba(255, 107, 107, 0.7));
+            animation: loaderBounce 2s ease-in-out infinite;
+            z-index: 2;
+        }
+        
+        @keyframes loaderBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+        
+        .lenxso2-loader .game-title {
+            color: #ff6b6b;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+            z-index: 2;
+        }
+        
+        .lenxso2-loader .game-description {
+            color: #ffc0c0;
+            font-weight: 500;
+            z-index: 2;
+        }
+        
+        .lenxso2-loader .game-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            max-width: 220px;
+            margin-top: 10px;
+            z-index: 2;
+        }
+        
+        .lenxso2-loader .game-btn:hover {
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.8);
+        }
+        
         .back-btn {
             display: inline-block;
             margin: 20px auto 40px;
-            padding: 14px 28px;
+            padding: 16px 32px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #ffffff;
             border: none;
-            border-radius: 14px;
-            font-size: 1rem;
+            border-radius: 18px;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -268,11 +419,17 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.5);
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
+            animation: buttonFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes buttonFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
         
         .back-btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.7);
         }
         
@@ -285,13 +442,14 @@
         
         .mod-card {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border-radius: 20px;
-            padding: 35px;
+            border-radius: 25px;
+            padding: 40px;
             border: 2px solid rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            cursor: pointer;
         }
         
         .mod-card::before {
@@ -300,44 +458,51 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 6px;
+            height: 8px;
             background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         }
         
         .mod-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px) scale(1.02);
             border-color: rgba(102, 126, 234, 0.8);
             box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         }
         
         .mod-icon {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 25px;
             display: block;
             text-align: center;
             animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
         }
         
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
+            50% { transform: translateY(-15px); }
         }
         
         .mod-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
             margin-bottom: 20px;
             color: #ffffff;
             text-align: center;
             letter-spacing: -0.3px;
             text-shadow: 0 0 15px rgba(102, 126, 234, 0.4);
+            animation: titlePulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes titlePulse {
+            0%, 100% { text-shadow: 0 0 15px rgba(102, 126, 234, 0.4); }
+            50% { text-shadow: 0 0 25px rgba(102, 126, 234, 0.6), 0 0 35px rgba(102, 126, 234, 0.4); }
         }
         
         .mod-description {
             color: #c0c0c0;
             line-height: 1.8;
             margin-bottom: 28px;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             text-align: center;
             font-weight: 400;
         }
@@ -345,29 +510,37 @@
         .password-info {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #ffffff;
-            padding: 20px 25px;
-            border-radius: 18px;
+            padding: 25px 30px;
+            border-radius: 20px;
             text-align: center;
             margin-bottom: 28px;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             border: 2px solid rgba(255,255,255,0.3);
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            animation: passwordPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes passwordPulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6); }
         }
         
         .password-info strong {
             color: #ffffff;
             font-weight: 900;
+            font-size: 1.2em;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
         
         .download-btn {
             width: 100%;
-            padding: 20px 25px;
+            padding: 22px 30px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #ffffff;
             border: none;
-            border-radius: 18px;
-            font-size: 1.3rem;
+            border-radius: 20px;
+            font-size: 1.4rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -378,10 +551,16 @@
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            animation: downloadPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes downloadPulse {
+            0%, 100% { box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6); }
+            50% { box-shadow: 0 12px 35px rgba(102, 126, 234, 0.8); }
         }
         
         .download-btn:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(102, 126, 234, 0.8);
         }
         
@@ -392,24 +571,31 @@
         .warning {
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
             border: 2px solid rgba(255, 107, 107, 0.4);
-            border-radius: 18px;
-            padding: 25px;
+            border-radius: 20px;
+            padding: 30px;
             margin: 35px 0;
             text-align: center;
             box-shadow: 0 15px 35px rgba(255, 107, 107, 0.3);
+            animation: warningPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes warningPulse {
+            0%, 100% { box-shadow: 0 15px 35px rgba(255, 107, 107, 0.3); }
+            50% { box-shadow: 0 20px 45px rgba(255, 107, 107, 0.5); }
         }
         
         .warning h3 {
             color: #ffffff;
             margin-bottom: 15px;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 800;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
         
         .warning p {
             color: #fff;
             line-height: 1.7;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
         }
         
         footer {
@@ -419,19 +605,26 @@
             color: #666666;
             font-size: 0.9rem;
             border-top: 1px solid rgba(102, 126, 234, 0.2);
+            animation: footerFade 2s ease-in;
+        }
+        
+        @keyframes footerFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .hidden {
             display: none;
         }
         
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .logo {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .mod-title {
-                font-size: 1.7rem;
+                font-size: 1.8rem;
             }
             
             .container {
@@ -439,31 +632,34 @@
             }
             
             .mod-card {
-                padding: 25px;
+                padding: 30px;
             }
             
             .game-selector {
-                flex-direction: column;
-                align-items: center;
-                gap: 25px;
+                grid-template-columns: 1fr;
+            }
+            
+            .lenxso2-loader {
+                grid-column: span 1;
+                min-height: 280px;
             }
             
             .game-option {
-                min-width: 200px;
-                padding: 18px;
+                min-height: 200px;
+                padding: 20px;
             }
             
             .game-icon {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .game-title {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
             }
             
             .game-btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
+                padding: 12px 25px;
+                font-size: 0.95rem;
             }
             
             .mods-grid {
@@ -474,39 +670,89 @@
                 padding: 14px 28px;
                 font-size: 1rem;
             }
+            
+            .back-btn {
+                padding: 14px 28px;
+                font-size: 1rem;
+            }
+            
+            .download-btn {
+                padding: 18px 25px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Tablet Responsiveness */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .logo {
+                font-size: 3.2rem;
+            }
+            
+            .mod-title {
+                font-size: 2rem;
+            }
+            
+            .game-icon {
+                font-size: 2.8rem;
+            }
+            
+            .game-title {
+                font-size: 1.4rem;
+            }
+            
+            .mod-card {
+                padding: 35px;
+            }
+            
+            .game-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .lenxso2-loader {
+                grid-column: span 2;
+                min-height: 280px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="particles-container" id="particles"></div>
+    <div class="grid-background"></div>
+    <div class="glow-overlay"></div>
     <div class="container">
         <header>
             <h1 class="logo">LENXSO2</h1>
-            <p class="subtitle">Моды и патчи для Standoff 2 и Minecraft</p>
+            <p class="subtitle">Официальный источник модов и читов для Standoff 2, Minecraft и Roblox</p>
             <a href="https://t.me/lenxso2" class="telegram-link" target="_blank">
                 <i class="fab fa-telegram"></i>
-                <span>Официальный Telegram канал</span>
+                <span>Присоединиться к Telegram каналу</span>
             </a>
         </header>
         
         <div id="gameSelection" class="game-selector">
+            <div class="lenxso2-loader" onclick="downloadLoader()">
+                <i class="fas fa-rocket game-icon"></i>
+                <h2 class="game-title">🚀 LenxSo2Loader 🚀</h2>
+                <p class="game-description">УБИЙЦА Exloader! Включает в себя 50+ читов на разные игры. Универсальный лоадер для всех модификаций от LenxSo2.</p>
+                <button class="game-btn" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);">СКАЧАТЬ ЛОАДЕР</button>
+            </div>
             <div class="game-option" onclick="selectGame('standoff2')">
                 <i class="fas fa-crosshairs game-icon"></i>
                 <h2 class="game-title">Standoff 2</h2>
-                <p class="game-description">Моды и читы</p>
-                <button class="game-btn standoff2-btn">ВЫБРАТЬ</button>
+                <p class="game-description">Продвинутые читы и модификации для максимальной эффективности в бою</p>
+                <button class="game-btn standoff2-btn">ВЫБРАТЬ ИГРУ</button>
             </div>
             <div class="game-option" onclick="selectGame('minecraft')">
                 <i class="fas fa-cube game-icon"></i>
                 <h2 class="game-title">Minecraft</h2>
-                <p class="game-description">Моды и улучшения</p>
-                <button class="game-btn minecraft-btn">ВЫБРАТЬ</button>
+                <p class="game-description">Мощные моды и улучшения для вашего игрового опыта</p>
+                <button class="game-btn minecraft-btn">ВЫБРАТЬ ИГРУ</button>
             </div>
             <div class="game-option" onclick="selectGame('roblox')">
                 <i class="fas fa-gamepad game-icon"></i>
                 <h2 class="game-title">Roblox</h2>
-                <p class="game-description">Моды и улучшения</p>
-                <button class="game-btn roblox-btn">ВЫБРАТЬ</button>
+                <p class="game-description">Инновационные модификации для расширения возможностей игры</p>
+                <button class="game-btn roblox-btn">ВЫБРАТЬ ИГРУ</button>
             </div>
         </div>
         
@@ -515,7 +761,7 @@
             
             <div class="warning">
                 <h3>⚠️ ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ</h3>
-                <p>Использование модификаций может привести к блокировке аккаунта. Используйте на свой страх и риск.</p>
+                <p>Использование модификаций может привести к блокировке аккаунта. Мы не несем ответственности за последствия использования читов. Используйте на свой страх и риск.</p>
             </div>
             
             <div class="password-info">
@@ -527,15 +773,15 @@
                 <div class="mod-card">
                     <div class="mod-icon">⚡</div>
                     <h3 class="mod-title">⚡ Impulse ⚡</h3>
-                    <p class="mod-description">Продвинутая модификация с улучшенными функциями прицеливания, автоматической разметкой врагов и оптимизированным интерфейсом для максимальной эффективности в бою.</p>
-                    <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/impulse.zip" class="download-btn" download>СКАЧАТЬ IMPULSE</a>
+                    <p class="mod-description">Продвинутая модификация с улучшенными функциями прицеливания, автоматической разметкой врагов и оптимизированным интерфейсом для максимальной эффективности в бою. Совместима с последней версией Standoff 2.</p>
+                    <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Impulse.zip" class="download-btn" download>СКАЧАТЬ IMPULSE</a>
                 </div>
                 
                 <!-- Nerest Mod -->
                 <div class="mod-card">
                     <div class="mod-icon">🛡️</div>
                     <h3 class="mod-title">🛡️ Nerest 🛡️</h3>
-                    <p class="mod-description">Защитная модификация с улучшенной системой обнаружения читеров, дополнительной броней и уникальными тактическими возможностями для командной игры.</p>
+                    <p class="mod-description">Защитная модификация с улучшенной системой обнаружения читеров, дополнительной броней и уникальными тактическими возможностями для командной игры. Идеально подходит для турниров и соревнований.</p>
                     <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Nerest.zip" class="download-btn" download>СКАЧАТЬ NEREST</a>
                 </div>
             </div>
@@ -553,7 +799,7 @@
                 <div class="mod-card">
                     <div class="mod-icon">🧄</div>
                     <h3 class="mod-title">🧄 Onion 🧄</h3>
-                    <p class="mod-description">Улучшенная модификация для Minecraft с расширенными возможностями, улучшенным интерфейсом и уникальными функциями для максимального игрового опыта.</p>
+                    <p class="mod-description">Улучшенная модификация для Minecraft с расширенными возможностями, улучшенным интерфейсом и уникальными функциями для максимального игрового опыта. Поддерживает последние версии Minecraft.</p>
                     <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Onion.zip" class="download-btn" download>СКАЧАТЬ ONION</a>
                 </div>
             </div>
@@ -571,15 +817,15 @@
                 <div class="mod-card">
                     <div class="mod-icon">🚀</div>
                     <h3 class="mod-title">🚀 Xeno v1.2.80 🚀</h3>
-                    <p class="mod-description">Продвинутый мод для Roblox с расширенными возможностями, улучшенным интерфейсом и уникальными функциями для максимального игрового опыта.</p>
+                    <p class="mod-description">Продвинутый мод для Roblox с расширенными возможностями, улучшенным интерфейсом и уникальными функциями для максимального игрового опыта. Поддерживает все популярные игры на платформе Roblox.</p>
                     <a href="https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Xeno-v1.2.80.zip" class="download-btn" download>СКАЧАТЬ XENO</a>
                 </div>
             </div>
         </div>
         
         <footer>
-            <p>© 2024 LenxSo2 • Моды для Standoff 2 и Minecraft</p>
-            <p>Пароль от архивов: 2025</p>
+            <p>© 2024 LenxSo2 • Официальный сайт модификаций для Standoff 2, Minecraft и Roblox</p>
+            <p>Пароль от архивов: 2025 | Все права защищены</p>
         </footer>
     </div>
     
@@ -603,21 +849,25 @@
             document.getElementById('gameSelection').classList.remove('hidden');
         }
         
+        function downloadLoader() {
+            window.location.href = 'https://github.com/LenxSo2/ploksdfoklpsmdnfkogsd/raw/refs/heads/main/Lenxso2Loader.zip';
+        }
+        
         // Create animated particles
         function createParticles() {
             const container = document.getElementById('particles');
-            const particleCount = 80;
+            const particleCount = 120;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
                 // Random properties
-                const size = Math.random() * 3 + 1;
+                const size = Math.random() * 4 + 1;
                 const posX = Math.random() * 100;
                 const posY = Math.random() * 100;
-                const delay = Math.random() * 1.5;
-                const duration = 1 + Math.random() * 0.5;
+                const delay = Math.random() * 2;
+                const duration = 1.5 + Math.random() * 1;
                 
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
@@ -637,7 +887,26 @@
             icons.forEach(icon => {
                 icon.style.animation = 'float 3s ease-in-out infinite';
             });
+            
+            // Add subtle animations to cards on scroll
+            const modCards = document.querySelectorAll('.mod-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            modCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
         });
     </script>
 </body>
 </html>
+
